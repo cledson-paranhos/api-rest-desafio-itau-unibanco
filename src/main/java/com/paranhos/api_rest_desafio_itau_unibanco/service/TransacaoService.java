@@ -11,7 +11,7 @@ import java.util.List;
 public class TransacaoService {
     private List<Transacao> listTransacao = new ArrayList<>();
 
-    public void salvarTransacao(@RequestBody Transacao transacao) {
+    public void salvarTransacao(Transacao transacao) {
         listTransacao.add(transacao);
     }
 
