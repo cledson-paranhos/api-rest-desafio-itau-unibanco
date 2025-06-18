@@ -1,11 +1,15 @@
 package com.paranhos.api_rest_desafio_itau_unibanco.dto;
 
-import java.time.LocalDateTime;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.OffsetDateTime;
 
 public class TransacaoDTO {
+    @NotNull
     private Double valor;
-    private OffsetDateTime  dataHora;
+    @NotNull
+    private OffsetDateTime dataHora;
 
     public Double getValor() {
         return valor;
@@ -15,7 +19,7 @@ public class TransacaoDTO {
         this.valor = valor;
     }
 
-    public OffsetDateTime  getDataHora() {
+    public OffsetDateTime getDataHora() {
         return dataHora;
     }
 
