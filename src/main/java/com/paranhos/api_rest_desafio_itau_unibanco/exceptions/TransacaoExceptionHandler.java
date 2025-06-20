@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class TransacaoExceptionHandler {
 
     @ExceptionHandler(TransacaoException.class)
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     public ResponseEntity<Void> handleTransacaoException(TransacaoException transacaoException) {
-        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).build();
+        return ResponseEntity.unprocessableEntity().build();
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
