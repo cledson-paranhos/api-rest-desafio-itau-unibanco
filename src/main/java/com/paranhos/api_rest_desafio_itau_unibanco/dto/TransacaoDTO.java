@@ -1,6 +1,5 @@
 package com.paranhos.api_rest_desafio_itau_unibanco.dto;
 
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.OffsetDateTime;

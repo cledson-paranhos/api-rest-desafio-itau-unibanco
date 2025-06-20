@@ -21,4 +21,10 @@ public class TransacaoController {
         transacaoService.salvarTransacao(new Transacao(transacaoDTO.getValor(), transacaoDTO.getDataHora()));
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+    @DeleteMapping
+    public ResponseEntity<Void> deletarTransacao() {
+        transacaoService.deletarTransacao();
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
 }
