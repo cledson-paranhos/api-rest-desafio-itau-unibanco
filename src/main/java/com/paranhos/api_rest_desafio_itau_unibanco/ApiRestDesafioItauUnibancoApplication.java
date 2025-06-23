@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ApiRestDesafioItauUnibancoApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ApiRestDesafioItauUnibancoApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(ApiRestDesafioItauUnibancoApplication.class, args);
+    }
 }
