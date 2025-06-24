@@ -1,10 +1,12 @@
 package com.paranhos.api_rest_desafio_itau_unibanco.service;
 
+import com.paranhos.api_rest_desafio_itau_unibanco.dto.TransacaoEstatisticaDTO;
 import com.paranhos.api_rest_desafio_itau_unibanco.entities.Transacao;
 import com.paranhos.api_rest_desafio_itau_unibanco.exceptions.TransacaoException;
 import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.DoubleSummaryStatistics;
 import java.util.List;
@@ -29,10 +31,21 @@ public class TransacaoService {
         listTransacao.clear();
     }
 
-    public DoubleSummaryStatistics obterEstatisticas() {
-        OffsetDateTime umMin = OffsetDateTime.now().minusMinutes(1);
+    public TransacaoEstatisticaDTO obterEstatisticas() {
+        OffsetDateTime dataAtual = OffsetDateTime.now().withOffsetSameLocal(ZoneOffset.UTC);
+        OffsetDateTime umMin = dataAtual.minusMinutes(1);
 
-        return listTransacao.stream().filter(e -> e.getDataHora().isBefore(umMin))
-                .mapToDouble(Transacao::getValor).summaryStatistics();
+        DoubleSummaryStatistics doubleSummaryStatistics = listTransacao.stream().filter(e -> e.getDataHora().isAfter(umMin)
+                && e.getDataHora().isBefore(dataAtual)).mapToDouble(Transacao::getValor).summaryStatistics();
+
+        TransacaoEstatisticaDTO transacaoEstatisticaDTO = new TransacaoEstatisticaDTO();
+
+        transacaoEstatisticaDTO.setCount(doubleSummaryStatistics.getCount());
+        transacaoEstatisticaDTO.setSum(doubleSummaryStatistics.getSum());
+        transacaoEstatisticaDTO.setAvg(doubleSummaryStatistics.getAverage());
+        transacaoEstatisticaDTO.setMin(doubleSummaryStatistics.getMin());
+        transacaoEstatisticaDTO.setMax(doubleSummaryStatistics.getMax());
+
+        return transacaoEstatisticaDTO;
     }
 }

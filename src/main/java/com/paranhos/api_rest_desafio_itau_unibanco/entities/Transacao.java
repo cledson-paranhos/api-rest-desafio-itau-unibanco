@@ -1,6 +1,5 @@
 package com.paranhos.api_rest_desafio_itau_unibanco.entities;
 
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
 public class Transacao {

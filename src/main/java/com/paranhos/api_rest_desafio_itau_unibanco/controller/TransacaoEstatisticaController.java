@@ -18,15 +18,7 @@ public class TransacaoEstatisticaController {
 
     @GetMapping
     public ResponseEntity<TransacaoEstatisticaDTO> obterEstatisticas() {
-        DoubleSummaryStatistics doubleSummaryStatistics = transacaoService.obterEstatisticas();
-
-        TransacaoEstatisticaDTO transacaoEstatisticaDTO = new TransacaoEstatisticaDTO();
-        transacaoEstatisticaDTO.setCount(doubleSummaryStatistics.getCount());
-        transacaoEstatisticaDTO.setSum(doubleSummaryStatistics.getSum());
-        transacaoEstatisticaDTO.setAvg(doubleSummaryStatistics.getAverage());
-        transacaoEstatisticaDTO.setMin(doubleSummaryStatistics.getMin());
-        transacaoEstatisticaDTO.setMax(doubleSummaryStatistics.getMax());
-
+        TransacaoEstatisticaDTO transacaoEstatisticaDTO = transacaoService.obterEstatisticas();
         return ResponseEntity.ok(transacaoEstatisticaDTO);
     }
 }
