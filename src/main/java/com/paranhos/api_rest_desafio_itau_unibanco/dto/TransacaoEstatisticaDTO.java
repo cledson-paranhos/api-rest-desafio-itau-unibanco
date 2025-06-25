@@ -7,6 +7,14 @@ public class TransacaoEstatisticaDTO {
     private Double min;
     private Double max;
 
+    public TransacaoEstatisticaDTO(long count, double sum, double avg, double min, double max) {
+        this.count = count;
+        this.sum = sum;
+        this.avg = avg;
+        this.min = min;
+        this.max = max;
+    }
+
     public Long getCount() {
         return count;
     }

@@ -38,14 +38,11 @@ public class TransacaoService {
         DoubleSummaryStatistics doubleSummaryStatistics = listTransacao.stream().filter(e -> e.getDataHora().isAfter(umMin)
                 && e.getDataHora().isBefore(dataAtual)).mapToDouble(Transacao::getValor).summaryStatistics();
 
-        TransacaoEstatisticaDTO transacaoEstatisticaDTO = new TransacaoEstatisticaDTO();
-
-        transacaoEstatisticaDTO.setCount(doubleSummaryStatistics.getCount());
-        transacaoEstatisticaDTO.setSum(doubleSummaryStatistics.getSum());
-        transacaoEstatisticaDTO.setAvg(doubleSummaryStatistics.getAverage());
-        transacaoEstatisticaDTO.setMin(doubleSummaryStatistics.getMin());
-        transacaoEstatisticaDTO.setMax(doubleSummaryStatistics.getMax());
-
-        return transacaoEstatisticaDTO;
+        return new TransacaoEstatisticaDTO(
+                doubleSummaryStatistics.getCount(),
+                doubleSummaryStatistics.getSum(),
+                doubleSummaryStatistics.getAverage(),
+                doubleSummaryStatistics.getCount() > 0 ? doubleSummaryStatistics.getMin() : 0.0,
+                doubleSummaryStatistics.getCount() > 0 ? doubleSummaryStatistics.getMax() : 0.0);
     }
 }
